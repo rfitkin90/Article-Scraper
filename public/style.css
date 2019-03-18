@@ -2,37 +2,84 @@ body,html {
    min-height: 100vh;
    font-family: eb garamond,serif;
    font-size: 18px;
+   color: white;
+   background: rgb(39, 39, 39);
 }
 
 .jumbotron {
+   background-image: url('./images/navbar-bg.png');
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
    text-align: center;
-   background-color: white;
-   text-shadow: 1px 1px 0 #000,
-    -1px 1px 0 #000,
-    1px -1px 0 #000,
+   /* background-color: white; */
+   text-shadow: 
+     1px  1px 0 #000,
+    -1px  1px 0 #000,
+     1px -1px 0 #000,
     -1px -1px 0 #000,
-    0px 1px 0 #000,
-    0px -1px 0 #000,
-    -1px 0px 0 #000,
-    1px 0px 0 #000,
-    2px 2px 0 #000,
-    -2px 2px 0 #000,
-    2px -2px 0 #000,
+     0px  1px 0 #000,
+     0px -1px 0 #000,
+    -1px  0px 0 #000,
+     1px  0px 0 #000,
+     2px  2px 0 #000,
+    -2px  2px 0 #000,
+     2px -2px 0 #000,
     -2px -2px 0 #000,
-    0px 2px 0 #000,
-    0px -2px 0 #000,
-    -2px 0px 0 #000,
-    2px 0px 0 #000,
-    1px 2px 0 #000,
-    -1px 2px 0 #000,
-    1px -2px 0 #000,
+     0px  2px 0 #000,
+     0px -2px 0 #000,
+    -2px  0px 0 #000,
+     2px  0px 0 #000,
+     1px  2px 0 #000,
+    -1px  2px 0 #000,
+     1px -2px 0 #000,
     -1px -2px 0 #000,
-    2px 1px 0 #000,
-    -2px 1px 0 #000,
-    2px -1px 0 #000,
+     2px  1px 0 #000,
+    -2px  1px 0 #000,
+     2px -1px 0 #000,
     -2px -1px 0 #000;
 }
 
 .article-div img {
    width: 100%;
+}
+
+a:link {
+   /* color: white; */
+}
+
+.modal-content {
+   background-color: rgb(37, 37, 37);
+}
+
+textarea {
+   resize: none;
+}
+
+hr {
+   border-top: 1px solid rgb(146, 146, 146);
+}
+
+#modal-comments-body {
+   max-height: 600px;
+}
+
+.comment-div {
+   display: flex;
+   flex-direction: column;
+}
+
+.delete-comment-btn {
+   align-self: flex-end;
+   width: 152px; 
+}
+
+
+.comment-div:not(:first-of-type) {
+   margin-top: 15px;
+}
+
+.comment-div:not(:last-of-type) {
+   padding-bottom: 15px;
+   border-bottom: 1px solid grey;
 }

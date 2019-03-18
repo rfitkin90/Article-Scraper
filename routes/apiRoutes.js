@@ -120,11 +120,9 @@ router.get("/articles/:id", function (req, res) {
 
 // post a comment to an article
 router.post("/articles/:id", function (req, res) {
+   console.log('req.body:', req.body);
 
-   db.Comment.create({
-      title: "Yo watup.",
-      body: "This article was dope."
-   })
+   db.Comment.create(req.body)
       .then(function (data) {
          console.log('data id:', data._id);
          return db.Article.update(
@@ -140,16 +138,26 @@ router.post("/articles/:id", function (req, res) {
          res.json(data);
       })
       .catch(function (err) {
-         // If an error occurred, send it to the client
          res.json(err);
       });
    ;
 
 });
 
-// clear all articles(for debugging)
-router.delete('/articles/', function (req, res) {
-   db.Article.deleteMany({});
+// delete a comment from an article
+router.delete('/comments/:id', function (req, res) {
+
+   db.Comment.remove({
+      _id: req.params.id
+   })
+      .then(function (data) {
+         res.json(data);
+      })
+      .catch(function (err) {
+         res.json(err);
+      });
+   ;
+
 });
 
 module.exports = router;
