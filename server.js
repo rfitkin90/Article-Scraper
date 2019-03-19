@@ -1,10 +1,9 @@
 var express = require('express');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-// var axios = require('axios');
-// var cheerio = require('cheerio');
 var apiRoutes = require("./routes/apiRoutes.js");
-// var db = require('./models');
+var htmlRoutes = require("./routes/htmlRoutes");
+var path = require('path');
 
 var PORT = process.env.PORT || 3000;
 
@@ -20,9 +19,7 @@ mongoose.connect(MONGODB_URI);
 
 app.use("/api", apiRoutes);
 
-app.get("/", function (req, res) {
-   res.json(path.join(__dirname, "public/index.html"));
-});
+app.use(htmlRoutes);
 
 
 app.listen(PORT, function () {

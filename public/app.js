@@ -1,5 +1,13 @@
 $(document).ready(function () {
 
+   $.ajax({
+      method: "DELETE",
+      url: "/api/articles/"
+   });
+
+   // put loading message first
+   $('#content').html('<p>Loading articles...</p>');
+
    // append all articles in the database to the page on load
    $.ajax({
       method: "GET",
@@ -7,9 +15,11 @@ $(document).ready(function () {
    })
       .then(function (data) {
          console.log('article data:', data);
+         // get rid of the loading message after the api request finishes
+         $('#content').empty();
 
          data.forEach(elem => {
-            $('#content').append(`
+            $('#content').prepend(`
                <div class="row article-div">
                   <div class="col-md-4">
                      <img src=${elem.img} />
@@ -42,6 +52,7 @@ $(document).ready(function () {
    // scrape current affairs for new articles to add to the database
    $(document).on('click', '#scrape-articles-btn', function (e) {
       e.preventDefault();
+      $('#content').html('<p>Scraping articles...</p>');
 
       $.ajax({
          url: "/api/scrape/",
@@ -98,7 +109,7 @@ $(document).ready(function () {
 
       // get the title of the modal
       $('#comments-modal-title').text($(this).attr('data-headline'));
-      
+
       // empty the comments section to be repopulated by the ajax request
       $('#modal-comments-body').empty();
 
