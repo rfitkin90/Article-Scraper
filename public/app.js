@@ -1,10 +1,5 @@
 $(document).ready(function () {
 
-   $.ajax({
-      method: "DELETE",
-      url: "/api/articles/"
-   });
-
    // put loading message first
    $('#content').html('<p>Loading articles...</p>');
 

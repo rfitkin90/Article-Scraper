@@ -12,11 +12,11 @@ router.get("/scrape", function (req, res) {
 
    // scrape from page 1
    axios.get("https://www.currentaffairs.org/posts?page=1").then(function (response) {
-      var $ = cheerio.load(response.data);
-      return $("div#content").children('div.row').each(function (i, elem) {
-         // push scraped objects into array
-         pushResults($, elem);
-      });
+      // var $ = cheerio.load(response.data);
+      // return $("div#content").children('div.row').each(function (i, elem) {
+      //    // push scraped objects into array
+      //    pushResults($, elem);
+      // });
    }).then(function () {
       // then scrape from page 2
       axios.get("https://www.currentaffairs.org/posts?page=2").then(function (response) {
@@ -130,9 +130,5 @@ router.delete('/comments/:id', function (req, res) {
    ;
 
 });
-
-router.delete('/articles/', function (req, res) {
-   db.Article.drop({});
-})
 
 module.exports = router;
