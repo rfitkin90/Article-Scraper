@@ -3,6 +3,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var apiRoutes = require("./routes/apiRoutes.js");
 var htmlRoutes = require("./routes/htmlRoutes");
+var exphbs = require("express-handlebars");
 var path = require('path');
 
 var PORT = process.env.PORT || 3000;
@@ -18,6 +19,10 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines
 mongoose.connect(MONGODB_URI);
 
 app.use("/api", apiRoutes);
+
+// Set Handlebars.
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 app.use(htmlRoutes);
 
