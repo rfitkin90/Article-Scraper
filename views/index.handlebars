@@ -72,5 +72,25 @@
 
 <!-- Main container -->
 <div class="container" id="content">
-   <!-- append articles here -->
+   {{#each articles}}
+   <div class="row article-div">
+      <div class="col-md-4">
+         <img src={{this.img}} />
+      </div>
+      <div class="col-md-8">
+         <h4 class="post-title">
+            <a href="{{this.URL}}" target="blank">{{this.headline}}</a>
+         </h4>
+         <p class="summary">{{this.summary}}</p>
+         <p class="by-line">by <a href="{{this.byLineURL}}" target="blank">{{this.byLine}}</a></p>
+
+         <button class="btn btn-secondary view-comments-btn" data-articleId="{{this._id}}" data-toggle="modal"
+            data-target="#view-comments-modal" data-headline="{{this.headline}}">View Comments</button>
+
+         <button class="btn btn-secondary post-comment-btn" data-articleId="{{this._id}}" data-toggle="modal"
+            data-target="#post-comment-modal">Post Comment</button>
+      </div>
+   </div>
+   <hr>
+   {{/each}}
 </div>
