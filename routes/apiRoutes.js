@@ -31,7 +31,7 @@ router.get("/scrape", function (req, res) {
          /* (this is the only way I could think of to get new articles posted
             after the initial scrape into the database in sequential order) */
          results.forEach(elem => {
-            db.Article.insertMany(elem)
+            db.Article.create(elem)
                .then(function (data) {
                   console.log('elem:', elem)
                   console.log('data:', data);

@@ -110,6 +110,65 @@ $(document).ready(function () {
 
    });
 
+   // sign up
+   $(document).on('click', '#sign-up-submit', function (e) {
+      e.preventDefault();
 
+      const alphabetArr = 'abcdefghijklmnopqrstuvwxyz'.split('');
+      const numericArr = '0123456789'.split('');
+      const pass = $('#sign-up-pwd').val();
+      const filterForLetter = pass.split('').filter(elem => alphabetArr.includes(elem));
+      const filterForNumber = pass.split('').filter(elem => numericArr.includes(elem));
+
+      console.log('filterforLetter:', filterForLetter);
+      console.log('filterForNumber:', filterForNumber);
+
+      // check for email
+      if (!$('#sign-up-email').val()) {
+         $('#sign-up-password-error').text('');
+         $('#sign-up-email-error').text('Please enter a valid email address.');
+         $('#sign-up-modal').modal();
+
+         // check password length
+      } else if (pass.length < 8) {
+         $('#sign-up-email-error').text('');
+         $('#sign-up-password-error').text('Password must be at least 8 characters long.');
+         $('#sign-up-modal').modal();
+
+         // check for number & letter
+      } else if (filterForLetter.length === 0 || filterForNumber.length === 0) {
+         $('#sign-up-email-error').text('');
+         $('#sign-up-password-error').text('Password must contain at least 1 letter and 1 number.');
+         $('#sign-up-modal').modal();
+
+         // check for matching confirmation password
+      } else if (pass !== $('#sign-up-confirm-pwd').val()) {
+         console.log(pass);
+         console.log($('#sign-up-confirm-pwd'));
+         $('#sign-up-email-error').text('');
+         $('#sign-up-password-error').text('Passwords do not match.');
+         $('#sign-up-modal').modal();
+
+         // make the api request
+      } else {
+
+         $.ajax({
+            url: "/auth/signup/",
+            method: "POST",
+            data: {
+               email: $('#sign-up-email').val().trim(),
+               password: pass.trim()
+            }
+         })
+            .then(function (data) {
+               console.log('signup data:', data);
+            })
+            .catch(function (err) {
+               console.error(err);
+            });
+         ;
+
+      }
+   });
 
 });

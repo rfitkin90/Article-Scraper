@@ -1,5 +1,8 @@
 body,html {
    min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+   flex-grow: 1;
    font-family: eb garamond,serif;
    font-size: 18px;
    color: white;
@@ -74,7 +77,6 @@ hr {
    width: 152px; 
 }
 
-
 .comment-div:not(:first-of-type) {
    margin-top: 15px;
 }
@@ -82,4 +84,15 @@ hr {
 .comment-div:not(:last-of-type) {
    padding-bottom: 15px;
    border-bottom: 1px solid grey;
+}
+
+#password-reqs {
+   font-size: 14px;
+}
+
+#sign-up-email-error, #sign-up-password-error {
+   font-size: 13px;
+   color: red;
+   min-height: 19px;
+   display: block;
 }
