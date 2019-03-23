@@ -116,6 +116,7 @@ $(document).ready(function () {
 
       const alphabetArr = 'abcdefghijklmnopqrstuvwxyz'.split('');
       const numericArr = '0123456789'.split('');
+      const email = $('#sign-up-email').val();
       const pass = $('#sign-up-pwd').val();
       const filterForLetter = pass.split('').filter(elem => alphabetArr.includes(elem));
       const filterForNumber = pass.split('').filter(elem => numericArr.includes(elem));
@@ -123,8 +124,13 @@ $(document).ready(function () {
       console.log('filterforLetter:', filterForLetter);
       console.log('filterForNumber:', filterForNumber);
 
+      function validateEmail(email) {
+         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+         return re.test(String(email).toLowerCase());
+      }
+
       // check for email
-      if (!$('#sign-up-email').val()) {
+      if (!validateEmail(email)) {
          $('#sign-up-password-error').text('');
          $('#sign-up-email-error').text('Please enter a valid email address.');
          $('#sign-up-modal').modal();
@@ -157,11 +163,12 @@ $(document).ready(function () {
             method: "POST",
             data: {
                email: $('#sign-up-email').val().trim(),
-               password: pass.trim()
+               password: pass
             }
          })
             .then(function (data) {
                console.log('signup data:', data);
+               alert('User created successfully.');
             })
             .catch(function (err) {
                console.error(err);

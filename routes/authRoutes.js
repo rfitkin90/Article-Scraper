@@ -11,6 +11,7 @@ router.post('/signup', passport.authenticate('signup', { session: false }), asyn
       message: 'Signup successful',
       user: req.user
    });
+   console.log('req.user:', req.user);
 });
 
 router.post('/login', async (req, res, next) => {
