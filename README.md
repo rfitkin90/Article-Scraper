@@ -1,5 +1,9 @@
 # Article-Scraper
 
+Scrapes the Current Affairs website for articles and appends them to the page to be commented on by users.
+
+#User Instructions
+
 1. Press the "Scrape recent articles" button to get the most recent articles from the Current Affairs website.
 
 ![https://puu.sh/D2aB3.png](https://puu.sh/D2aB3.png)
